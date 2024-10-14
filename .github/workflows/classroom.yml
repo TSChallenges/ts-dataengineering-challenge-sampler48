@@ -18,7 +18,7 @@ jobs:
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: test-1
-        setup-command: pip install -r requirements
+        setup-command: pip install -r requirements.txt
         command: pytest
         timeout: 10
         max-score: 30
