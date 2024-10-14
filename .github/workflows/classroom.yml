@@ -13,16 +13,18 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Run Test
-      id: run-test
-      uses: classroom-resources/autograding-python-grader@v1
+    - name: test-1
+      id: test-1
+      uses: classroom-resources/autograding-command-grader@v1
       with:
+        test-name: test-1
+        setup-command: pip install -r requirements
+        command: pytest
         timeout: 10
         max-score: 30
-        setup-command: pip install -r requirements
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        RUN-TEST_RESULTS: "${{steps.run-test.outputs.result}}"
+        TEST-1_RESULTS: "${{steps.test-1.outputs.result}}"
       with:
-        runners: run-test
+        runners: test-1
